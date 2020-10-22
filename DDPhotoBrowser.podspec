@@ -10,12 +10,12 @@ Pod::Spec.new do |s|
   # 项目的名称
   s.name             = 'DDPhotoBrowser'
   # 项目的版本号，通过项目git的tag标签进行对应，这里的标签代表的版本
-  s.version          = '1.0.0'
+  s.version          = '2.0.0'
   # 项目简单的描述信息
   s.summary          = '图片浏览组件'
 
 # 项目的详细描述信息，注意，这里的文字的长度，一定要比上面的s.summary长，不然会认为格式不合格
-  s.description      = '图片浏览 组件描述.'
+#  s.description      = '图片浏览 组件描述.'
 #TODO: Add long description of the pod here.
   #                       DESC
   # 组件的网页主页
