@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'DDPhotoBrowser_Example' do
+  pod 'DDPhotoBrowser', :path => '../'
+
+  target 'DDPhotoBrowser_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
