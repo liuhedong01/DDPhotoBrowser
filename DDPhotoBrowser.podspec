@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   # 项目的名称
   s.name             = 'DDPhotoBrowser'
   # 项目的版本号，通过项目git的tag标签进行对应，这里的标签代表的版本
-  s.version          = '2.0.0'
+  s.version          = '2.0.1'
   # 项目简单的描述信息
   s.summary          = '图片浏览组件'
 
@@ -52,6 +52,6 @@ Pod::Spec.new do |s|
   s.frameworks = 'UIKit', 'Foundation'
   
   # 依赖关系，该项目所依赖的其他，当在加载的时候也会一块把相关的依赖的库加载下来，如果有多个需要填写多个
-  s.dependency 'SDWebImage', '~> 5.0'
+  # s.dependency 'SDWebImage', '~> 5.0'
    
 end

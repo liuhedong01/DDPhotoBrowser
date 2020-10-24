@@ -37,6 +37,12 @@
 /** 数字 - 指示页码 */
 @property (nonatomic, strong) UILabel * pageLabel;
 
+/**  获取图片 */
+@property (nonatomic, copy) Class<DDGetImageViewEngine> getImageViewClass;
+
+/**  图片下载 */
+@property (nonatomic, strong) id<DDPhotoImageDownloadEngine> imageDownloadEngine;
+
 @end
 
 @implementation DDPhotoBrowser
@@ -46,10 +52,15 @@
     return nil;
 }
 
+/**
+ * 默认使用 初始化
+ */
 + (instancetype)photoBrowserWithPhotoItems:(NSArray<DDPhotoItem *> *)photoItems
                               currentIndex:(NSUInteger)currentIndex
+                         getImageViewClass:(Class<DDGetImageViewEngine>)getImageViewClass
+                            downloadEngine:(id<DDPhotoImageDownloadEngine>)downloadEngine
 {
-    DDPhotoBrowser * bVC = [[DDPhotoBrowser alloc] initWithPhotoItems:photoItems currentIndex:currentIndex];
+    DDPhotoBrowser * bVC = [[DDPhotoBrowser alloc] initWithPhotoItems:photoItems currentIndex:currentIndex getImageViewClass:getImageViewClass downloadEngine:downloadEngine];
     return bVC;
 }
 
@@ -58,7 +69,11 @@
     return YES;
 }
 
-- (instancetype)initWithPhotoItems:(NSArray<DDPhotoItem *> *)photoItems currentIndex:(NSUInteger)currentIndex
+- (instancetype)initWithPhotoItems:(NSArray<DDPhotoItem *> *)photoItems
+                      currentIndex:(NSUInteger)currentIndex
+                 getImageViewClass:(Class<DDGetImageViewEngine>)getImageViewClass
+                    downloadEngine:(id<DDPhotoImageDownloadEngine>)downloadEngine
+
 {
     self = [super init];
     if (self) {
@@ -68,6 +83,8 @@
         [self.photoItems addObjectsFromArray:photoItems];
         self.currentPage = currentIndex;
         self.pageIndicateStyle = DDPhotoBrowserPageIndicateStylePageLabel;
+        self.getImageViewClass = getImageViewClass;
+        self.imageDownloadEngine = downloadEngine;
     }
     return self;
 }
@@ -143,6 +160,9 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     DDPhotoBrowserCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DDPhotoBrowserCollectionViewCell" forIndexPath:indexPath];
+    cell.getImageViewClass = self.getImageViewClass;
+    
+    cell.imageDownloadEngine = self.imageDownloadEngine;
     
     DDPhotoItem * item = self.photoItems[indexPath.row];
     
@@ -286,7 +306,6 @@
 {
     if (!_pageControl) {
         _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame)-40, CGRectGetWidth(self.view.frame), 20)];
-        _pageControl.alpha = 0;
     }
     return _pageControl;
 }

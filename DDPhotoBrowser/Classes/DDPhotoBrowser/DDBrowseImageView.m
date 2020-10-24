@@ -12,34 +12,32 @@
 
 /**最多缩放比例*/
 @property (nonatomic,assign) CGFloat kMaximumZoomScale;
-/**选择显示图片的控件*/
-@property (nonatomic,assign) DDImageViewEngineType imageViewEngineType;
 
-@property (nonatomic, strong) id<DDImageView> ddImageView;
-
+/**  获取图片 */
+@property (nonatomic, strong) id<DDGetImageViewEngine> getImageViewEngine;
 
 @end
 
 @implementation DDBrowseImageView
+
 
 - (instancetype)init {
     NSAssert(NO, @"Use initWithFrame:imageViewEngineType instead.");
     return nil;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame {
     NSAssert(NO, @"Use initWithFrame:imageViewEngineType instead.");
     return nil;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame imageViewEngineType:(DDImageViewEngineType)imageViewEngineType
+- (instancetype)initWithFrame:(CGRect)frame
+           getImageViewEngine:(id<DDGetImageViewEngine>)getImageViewEngine
 {
     self = [super initWithFrame:frame];
-    
     if (self) {
         
-        _imageViewEngineType = imageViewEngineType;
+        self.getImageViewEngine = getImageViewEngine;
         
         [self __setupPhotoImageView];
         
@@ -58,13 +56,13 @@
     
     [self addSubview:self.scrollView];
     
-    self.ddImageView = [DDImageViewEngine getImageViewWith:_imageViewEngineType frame:CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
-    _imageView = [self.ddImageView getImageView];
+    _imageView = [self.getImageViewEngine getImageViewWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
     _imageView.contentMode = UIViewContentModeScaleAspectFill;
     _imageView.clipsToBounds = YES;
     _imageView.hidden = YES;
     [self.scrollView addSubview:_imageView];
     
+
     [self __addGestureRecognizers];
     
     self.userInteractionEnabled = NO;
@@ -165,7 +163,7 @@
 {
     if (longGesture.state == UIGestureRecognizerStateBegan) {
         if (self.longPressGestureClickedBlock) {
-            NSData * imageData = [self.ddImageView getImageData];
+            NSData * imageData = [self.getImageViewEngine getImageData];
             self.longPressGestureClickedBlock(imageData);
         }
     }

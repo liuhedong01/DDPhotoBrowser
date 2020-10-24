@@ -7,36 +7,34 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <SDWebImage/SDImageCache.h>
 
 typedef void (^DDPhotoImageDownloadEngineProgressBlock)(NSInteger receivedSize, NSInteger expectedSize);
 
-typedef void (^DDPhotoImageDownloadEngineFinishBlock)(UIImage * _Nullable image, NSURL * _Nullable url, BOOL success, NSError * _Nullable error);
+typedef void (^DDPhotoImageDownloadEngineFinishBlock)(UIImage * image, NSURL * url, BOOL success, NSError * error);
 
 @protocol DDPhotoImageDownloadEngine <NSObject>
 @optional
-@property (nonatomic,copy) DDPhotoImageDownloadEngineFinishBlock _Nullable finish;
+@property (nonatomic,copy) DDPhotoImageDownloadEngineFinishBlock _finish;
 
-//double progress = (double)receivedSize / expectedSize;
 /**请求数据*/
-- (void)setImageWithImageView:(nullable UIImageView *)imageView
-                     imageURL:(nullable NSURL *)imageURL
-                thumbImageUrl:(nullable NSURL *)thumbImageUrl
-                  placeholder:(nullable UIImage *)placeholder
-                     progress:(nullable DDPhotoImageDownloadEngineProgressBlock)progress
-                       finish:(nullable DDPhotoImageDownloadEngineFinishBlock)finish;
-- (void)setImageWithImageView:(nullable UIImageView *)imageView
-                     imageURL:(nullable NSURL *)imageURL
-                  placeholder:(nullable UIImage *)placeholder
-                     progress:(nullable DDPhotoImageDownloadEngineProgressBlock)progress
-                       finish:(nullable DDPhotoImageDownloadEngineFinishBlock)finish;
+- (void)setImageWithImageView:(UIImageView *)imageView
+                     imageURL:(NSURL *)imageURL
+                thumbImageUrl:(NSURL *)thumbImageUrl
+                  placeholder:(UIImage *)placeholder
+                     progress:(DDPhotoImageDownloadEngineProgressBlock)progress
+                       finish:(DDPhotoImageDownloadEngineFinishBlock)finish;
+- (void)setImageWithImageView:(UIImageView *)imageView
+                     imageURL:(NSURL *)imageURL
+                  placeholder:(UIImage *)placeholder
+                     progress:(DDPhotoImageDownloadEngineProgressBlock)progress
+                       finish:(DDPhotoImageDownloadEngineFinishBlock)finish;
 /** 取消请求 */
-- (void)cancelImageRequestWithImageView:(nullable UIImageView *)imageView;
+- (void)cancelImageRequestWithImageView:(UIImageView *)imageView;
 /** 通过url从内存中获取图片 */
-- (UIImage *_Nullable)imageFromMemoryCacheForURL:(nullable NSURL *)url;
+- (UIImage *)imageFromMemoryCacheForURL:(NSURL *)url;
 /** 通过url从磁盘中获取图片 */
-- (UIImage *_Nullable)imageFromDiskCacheForURL:(nullable NSURL *)url;
+- (UIImage *)imageFromDiskCacheForURL:(NSURL *)url;
 /** 通过url获取图片 */
-- (nullable UIImage *)imageFromCacheForURL:(nullable NSURL *)url;
+- (UIImage *)imageFromCacheForURL:(NSURL *)url;
 
 @end

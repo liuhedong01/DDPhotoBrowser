@@ -7,21 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DDImageViewEngine.h"
+#import "DDGetImageViewEngine.h"
+#import "DDPhotoImageDownloadEngine.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /** 查看单个图片 */
 @interface DDBrowseImageView : UIView <UIScrollViewDelegate,UIGestureRecognizerDelegate>
 
-/** 图片索引，具体图片 根据 DDImageViewEngineType生成 */
-@property (nonatomic,strong) UIImageView * imageView;
+/** 图片索引，具体图片 根据 getImageViewEngine 生成 */
+@property (nonatomic, strong) UIImageView * imageView;
 
-@property (nonatomic,strong) UIScrollView * scrollView;
-
+@property (nonatomic, strong) UIScrollView * scrollView;
 
 /** 双击手势 */
-@property (nonatomic,strong) UITapGestureRecognizer *doubleGestureRecognizer;
+@property (nonatomic, strong) UITapGestureRecognizer *doubleGestureRecognizer;
 
 /** 单点手势 */
 @property (nonatomic, strong) UITapGestureRecognizer *singleTapGestureRecognizer;
@@ -38,14 +38,12 @@ NS_ASSUME_NONNULL_BEGIN
 /** 双击手势 手势点击了 回调 */
 @property (nonatomic, copy) void (^doubleGestureClickedBlock)(void);
 
-/**
- 初始化
 
- @param frame frame
- @param imageViewEngineType 获取图片 imageView
- @return 返回对象
- */
-- (instancetype)initWithFrame:(CGRect)frame imageViewEngineType:(DDImageViewEngineType)imageViewEngineType;
+/**  图片下载 */
+@property (nonatomic, strong) id<DDPhotoImageDownloadEngine> imageDownloadEngine;
+
+- (instancetype)initWithFrame:(CGRect)frame
+           getImageViewEngine:(id<DDGetImageViewEngine>)getImageViewEngine;
 
 #pragma mark - 初始化基础数据
 - (void)setupPhotoImageView;

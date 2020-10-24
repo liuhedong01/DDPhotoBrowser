@@ -12,7 +12,8 @@
 
 @property (nonatomic, strong) DDPhotoImageView * imageView;
 
-@property (nonatomic, assign) DDImageViewEngineType imageViewEngineType;
+/**  获取图片 */
+@property (nonatomic, strong) id<DDGetImageViewEngine> getImageViewEngine;
 
 @end
 
@@ -24,25 +25,39 @@
 {
     _item = item;
     
-    [self _configUI];
-    
+    self.imageView.item = item;
+
 }
 
-- (void)_configUI
+- (void)setGetImageViewClass:(Class<DDGetImageViewEngine>)getImageViewClass
 {
-    
+    if (!_getImageViewEngine) {
+        Class class = getImageViewClass.class;
+        self.getImageViewEngine = [[class alloc] init];
+    }
+}
+- (void)setGetImageViewEngine:(id<DDGetImageViewEngine>)getImageViewEngine
+{
+    _getImageViewEngine = getImageViewEngine;
     if (!_imageView) {
         //没有
-        _imageView = [[DDPhotoImageView alloc] initWithFrame:[UIScreen mainScreen].bounds imageViewEngineType:self.item.imageViewEngineType];
-        
-//        _imageView.backgroundColor = [UIColor cyanColor];
-        
+        _imageView = [[DDPhotoImageView alloc] initWithFrame:[UIScreen mainScreen].bounds getImageViewEngine:getImageViewEngine];
+                
+        _imageView.imageDownloadEngine = self.imageDownloadEngine;
+                
         [self.contentView addSubview:self.imageView];
     }
     
-    self.imageView.item = self.item;
+}
 
-    
+- (void)setImageDownloadEngine:(id<DDPhotoImageDownloadEngine>)imageDownloadEngine
+{
+    if (!_imageDownloadEngine) {
+        _imageDownloadEngine = imageDownloadEngine;
+        if (_imageView) {
+            self.imageView.imageDownloadEngine = imageDownloadEngine;
+        }
+    }
 }
 
 @end

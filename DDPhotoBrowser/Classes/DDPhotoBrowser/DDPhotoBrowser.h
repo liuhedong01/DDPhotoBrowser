@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "DDPhotoImageDownloadEngine.h"
-#import "DDPhotoSDImageDownloadEngine.h"
+#import "DDGetImageViewEngine.h"
 #import "DDPhotoItem.h"
-#import "DDImageViewEngine.h"
 
 @protocol DDPhotoImageDownloadEngine;
 
@@ -35,10 +34,12 @@ typedef NS_ENUM(NSUInteger, DDPhotoBrowserPageIndicateStyle) {
 @property (nonatomic, copy) void (^longPressGestureClickedBlock)(DDPhotoBrowser * browser,NSInteger index,DDPhotoItem * item,NSData * imageData);
 
 /**
- * 默认使用 DDPhotoSDImageDownloadEngine
+ * 默认使用 初始化
  */
 + (instancetype)photoBrowserWithPhotoItems:(NSArray<DDPhotoItem *> *)photoItems
-                              currentIndex:(NSUInteger)currentIndex;
+                              currentIndex:(NSUInteger)currentIndex
+                         getImageViewClass:(Class<DDGetImageViewEngine>)getImageViewClass
+                            downloadEngine:(id<DDPhotoImageDownloadEngine>)downloadEngine;
 
 /**弹出*/
 - (void)showFromVC:(UIViewController *)vc;

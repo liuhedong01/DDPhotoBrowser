@@ -8,9 +8,6 @@
 
 #import "DDPhotoItem.h"
 
-#import "DDPhotoImageDownloadEngine.h"
-
-
 @implementation DDPhotoItem
 
 - (instancetype)initWithSourceView:(UIImageView *)sourceView
@@ -18,7 +15,6 @@
                         thumbImage:(UIImage *)thumbImage
                      thumbImageUrl:(NSURL *)thumbImageUrl
                   placeholderImage:(UIImage *)placeholderImage
-               imageDownloadEngine:(id<DDPhotoImageDownloadEngine>)imageDownloadEngine
 {
     self = [super init];
     if (self) {
@@ -27,8 +23,6 @@
         self.thumbImage = thumbImage;
         self.thumbImageUrl = thumbImageUrl;
         self.placeholderImage = placeholderImage;
-        self.imageDownloadEngine = imageDownloadEngine;
-        self.imageViewEngineType = DDImageViewEngineSystemType;
     }
     return self;
 }
@@ -37,18 +31,16 @@
                         thumbImage:(UIImage *)thumbImage
                      thumbImageUrl:(NSURL *)thumbImageUrl
                   placeholderImage:(UIImage *)placeholderImage
-               imageDownloadEngine:(id<DDPhotoImageDownloadEngine>)imageDownloadEngine
 {
-    return [[DDPhotoItem alloc] initWithSourceView:sourceView imageUrl:imageUrl thumbImage:thumbImage thumbImageUrl:thumbImageUrl placeholderImage:placeholderImage imageDownloadEngine:imageDownloadEngine];
+    return [[DDPhotoItem alloc] initWithSourceView:sourceView imageUrl:imageUrl thumbImage:thumbImage thumbImageUrl:thumbImageUrl placeholderImage:placeholderImage];
 }
 
 + (instancetype)itemWithSourceView:(UIImageView *)sourceView
                           imageUrl:(NSURL *)imageUrl
                         thumbImage:(UIImage *)thumbImage
                      thumbImageUrl:(NSURL *)thumbImageUrl
-                      imageDownloadEngine:(id<DDPhotoImageDownloadEngine>)imageDownloadEngine
 {
-    return [self itemWithSourceView:sourceView imageUrl:imageUrl thumbImage:thumbImage thumbImageUrl:thumbImageUrl placeholderImage:nil imageDownloadEngine:imageDownloadEngine];
+    return [self itemWithSourceView:sourceView imageUrl:imageUrl thumbImage:thumbImage thumbImageUrl:thumbImageUrl placeholderImage:nil];
 }
 
 - (CGRect)sourceViewInWindowRect

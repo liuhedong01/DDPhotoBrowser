@@ -230,9 +230,9 @@
     __weak typeof(self) weakSelf = self;
     
     /** 如果原图还没有下载下来，缩略图存在，为了避免缩略图是动图 ， 先加载缩略图 */
-    if (![self.item.imageDownloadEngine imageFromCacheForURL:_item.imageUrl] && _item.thumbImageUrl && [self.item.imageDownloadEngine imageFromCacheForURL:_item.thumbImageUrl]) {
+    if (![self.imageDownloadEngine imageFromCacheForURL:_item.imageUrl] && _item.thumbImageUrl && [self.imageDownloadEngine imageFromCacheForURL:_item.thumbImageUrl]) {
         
-        [self.item.imageDownloadEngine setImageWithImageView:self.imageView imageURL:_item.thumbImageUrl placeholder:self.item.placeholderImage progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        [self.imageDownloadEngine setImageWithImageView:self.imageView imageURL:_item.thumbImageUrl placeholder:self.item.placeholderImage progress:^(NSInteger receivedSize, NSInteger expectedSize) {
         } finish:^(UIImage * _Nullable image, NSURL * _Nullable url, BOOL success, NSError * _Nullable error) {
             
             __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -242,7 +242,7 @@
         }];
     }
     
-    [self.item.imageDownloadEngine setImageWithImageView:self.imageView imageURL:_item.imageUrl thumbImageUrl:_item.thumbImageUrl placeholder:_item.placeholderImage progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+    [self.imageDownloadEngine setImageWithImageView:self.imageView imageURL:_item.imageUrl thumbImageUrl:_item.thumbImageUrl placeholder:_item.placeholderImage progress:^(NSInteger receivedSize, NSInteger expectedSize) {
         
         __strong typeof(weakSelf) strongSelf = weakSelf;
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -282,7 +282,17 @@
         
         CGRect  dsImageRect = self.imageView.frame;
         
-        self.imageView.frame = self.item.sourceViewInWindowRect;
+        CGRect  sImageRect = self.item.sourceViewInWindowRect;
+
+        if (sImageRect.size.width == 0 || sImageRect.size.height == 0) {
+            sImageRect.size.width = dsImageRect.size.width;
+            sImageRect.size.height = dsImageRect.size.height;
+            
+            sImageRect.origin.y = -sImageRect.size.height;
+            sImageRect.origin.x = (CGRectGetWidth(self.frame) - sImageRect.size.width)/2.0;
+        }
+        
+        self.imageView.frame = sImageRect;
         
         __weak typeof(self) weakSelf = self;
         
@@ -313,8 +323,8 @@
 
 - (void)cancelImageRequest
 {
-    if (self.item && self.item.imageDownloadEngine) {
-        [self.item.imageDownloadEngine cancelImageRequestWithImageView:self.imageView];
+    if (self.item && self.imageDownloadEngine) {
+        [self.imageDownloadEngine cancelImageRequestWithImageView:self.imageView];
     }
 }
 

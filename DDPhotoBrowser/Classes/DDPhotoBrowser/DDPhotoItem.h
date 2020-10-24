@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "DDPhotoImageDownloadEngine.h"
-#import "DDImageViewEngine.h"
-
-@protocol DDPhotoImageDownloadEngine;
 
 @interface DDPhotoItem : NSObject
 
@@ -30,12 +26,6 @@
 @property (nonatomic, assign,readonly) CGRect sourceViewInWindowRect;//sourceView位于UIWindow坐标系中的位置）
 /**用于点击图片时，从sourceView 转场到现在的window*/
 @property (nonatomic, assign) BOOL firstShowAnimation;
-/**下载图片的协议管理*/
-@property (nonatomic, strong) id<DDPhotoImageDownloadEngine> imageDownloadEngine;
-
-/** 选择显示图片的控件,默认是UIImageView */
-@property (nonatomic, assign) DDImageViewEngineType imageViewEngineType;
-
 
 /** 检测是否是网络图片 ，如果 imageUrl 为空 就是 本地图片， 不判断 thumbImageUrl是否存在 */
 - (BOOL)checkIsNetworkImage;
@@ -44,14 +34,12 @@
                           imageUrl:(NSURL *)imageUrl
                         thumbImage:(UIImage *)thumbImage
                      thumbImageUrl:(NSURL *)thumbImageUrl
-                  placeholderImage:(UIImage *)placeholderImage
-               imageDownloadEngine:(id<DDPhotoImageDownloadEngine>)imageDownloadEngine;
+                  placeholderImage:(UIImage *)placeholderImage;
 
 + (instancetype)itemWithSourceView:(UIImageView *)sourceView
                           imageUrl:(NSURL *)imageUrl
                         thumbImage:(UIImage *)thumbImage
-                     thumbImageUrl:(NSURL *)thumbImageUrl
-                      imageDownloadEngine:(id<DDPhotoImageDownloadEngine>)imageDownloadEngine;
+                     thumbImageUrl:(NSURL *)thumbImageUrl;
 
 
 @end

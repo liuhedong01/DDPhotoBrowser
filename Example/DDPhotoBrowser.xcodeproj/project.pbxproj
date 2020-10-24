@@ -23,6 +23,8 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
+		726A6F9825441B9D00935623 /* DDPhotoSDImageDownloadEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 726A6F9725441B9D00935623 /* DDPhotoSDImageDownloadEngine.m */; };
+		726A6FA725441EA800935623 /* DDSDAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 726A6FA225441EA700935623 /* DDSDAnimatedImageView.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +63,10 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		60AD26E45BD01684E693A5D9 /* Pods-DDPhotoBrowser_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DDPhotoBrowser_Tests.release.xcconfig"; path = "Target Support Files/Pods-DDPhotoBrowser_Tests/Pods-DDPhotoBrowser_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		726A6F9625441B9D00935623 /* DDPhotoSDImageDownloadEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDPhotoSDImageDownloadEngine.h; sourceTree = "<group>"; };
+		726A6F9725441B9D00935623 /* DDPhotoSDImageDownloadEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDPhotoSDImageDownloadEngine.m; sourceTree = "<group>"; };
+		726A6FA225441EA700935623 /* DDSDAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDSDAnimatedImageView.m; sourceTree = "<group>"; };
+		726A6FA525441EA800935623 /* DDSDAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDSDAnimatedImageView.h; sourceTree = "<group>"; };
 		7C6CFF2EF4E01E26525150FA /* Pods_DDPhotoBrowser_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DDPhotoBrowser_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8B34586AE8E5212818F16720 /* Pods-DDPhotoBrowser_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DDPhotoBrowser_Example.debug.xcconfig"; path = "Target Support Files/Pods-DDPhotoBrowser_Example/Pods-DDPhotoBrowser_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +138,7 @@
 		6003F593195388D20070C39A /* Example for DDPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				726A6F9425441A1600935623 /* DDPhotoBrowserExtend */,
 				6003F59C195388D20070C39A /* DDAppDelegate.h */,
 				6003F59D195388D20070C39A /* DDAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -183,6 +190,33 @@
 				3DD2E5D3FFC4853B0CD0728E /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		726A6F9425441A1600935623 /* DDPhotoBrowserExtend */ = {
+			isa = PBXGroup;
+			children = (
+				726A6F9F25441E7100935623 /* DDImageViewEngine */,
+				726A6F9525441B6C00935623 /* DDPhotoImageDownloadEngine */,
+			);
+			path = DDPhotoBrowserExtend;
+			sourceTree = "<group>";
+		};
+		726A6F9525441B6C00935623 /* DDPhotoImageDownloadEngine */ = {
+			isa = PBXGroup;
+			children = (
+				726A6F9625441B9D00935623 /* DDPhotoSDImageDownloadEngine.h */,
+				726A6F9725441B9D00935623 /* DDPhotoSDImageDownloadEngine.m */,
+			);
+			path = DDPhotoImageDownloadEngine;
+			sourceTree = "<group>";
+		};
+		726A6F9F25441E7100935623 /* DDImageViewEngine */ = {
+			isa = PBXGroup;
+			children = (
+				726A6FA525441EA800935623 /* DDSDAnimatedImageView.h */,
+				726A6FA225441EA700935623 /* DDSDAnimatedImageView.m */,
+			);
+			path = DDImageViewEngine;
 			sourceTree = "<group>";
 		};
 		E19633C28391B0A6C7E71EE7 /* Pods */ = {
@@ -366,9 +400,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				726A6FA725441EA800935623 /* DDSDAnimatedImageView.m in Sources */,
 				6003F59E195388D20070C39A /* DDAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* DDViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				726A6F9825441B9D00935623 /* DDPhotoSDImageDownloadEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

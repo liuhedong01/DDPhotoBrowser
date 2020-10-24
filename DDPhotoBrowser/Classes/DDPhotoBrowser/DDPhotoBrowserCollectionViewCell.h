@@ -13,7 +13,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DDPhotoBrowserCollectionViewCell : UICollectionViewCell
 
+
+/**  获取图片 */
+@property (nonatomic, copy) Class<DDGetImageViewEngine> getImageViewClass;
+
+/**  图片下载 */
+@property (nonatomic, strong) id<DDPhotoImageDownloadEngine> imageDownloadEngine;
+
 @property (nonatomic, strong, readonly) DDPhotoImageView * imageView;
+
 
 @property (nonatomic, strong) DDPhotoItem * item;
 
