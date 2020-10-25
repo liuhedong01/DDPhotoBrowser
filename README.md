@@ -4,8 +4,10 @@
 [![Version](https://img.shields.io/cocoapods/v/DDPhotoBrowser.svg?style=flat)](https://cocoapods.org/pods/DDPhotoBrowser)
 [![License](https://img.shields.io/cocoapods/l/DDPhotoBrowser.svg?style=flat)](https://cocoapods.org/pods/DDPhotoBrowser)
 [![Platform](https://img.shields.io/cocoapods/p/DDPhotoBrowser.svg?style=flat)](https://cocoapods.org/pods/DDPhotoBrowser)
-https://github.com/liuhedong01/DDPhotoBrowser/blob/master/2020-10-25%20153349.gif
+
 ## Example
+
+![](https://github.com/liuhedong01/DDPhotoBrowser/blob/master/2020-10-25%20153349.gif)
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
