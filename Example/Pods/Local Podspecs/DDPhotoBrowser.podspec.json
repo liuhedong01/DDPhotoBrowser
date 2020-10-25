@@ -1,6 +1,6 @@
 {
   "name": "DDPhotoBrowser",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "summary": "图片浏览组件",
   "homepage": "https://github.com/liuhedong01/DDPhotoBrowser",
   "license": {
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/liuhedong01/DDPhotoBrowser.git",
-    "tag": "2.0.0"
+    "tag": "2.0.1"
   },
   "platforms": {
     "ios": "9.0"

@@ -12,7 +12,10 @@
 
 #import "DDGetImageViewEngine.h"
 #import "DDSystemImageView.h"
+#import "DDBrowseImageView.h"
 #import "DDPhotoBrowser.h"
+#import "DDPhotoBrowserCollectionViewCell.h"
+#import "DDPhotoImageView.h"
 #import "DDPhotoItem.h"
 #import "DDPhotoLoadingView.h"
 #import "DDPhotoImageDownloadEngine.h"
