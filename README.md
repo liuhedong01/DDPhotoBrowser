@@ -4,6 +4,9 @@
 
 ![](https://github.com/liuhedong01/DDPhotoBrowser/blob/master/2020-10-25%20153349.gif)
 
+### 外部配置下载管理类 和 图片显示类
+![](https://github.com/liuhedong01/DDPhotoBrowser/blob/master/image1%402x.png)
+
 ### 简单实用
 ```objc
 
