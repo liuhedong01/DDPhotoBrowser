@@ -59,10 +59,7 @@
 - (void)imageTapClicked:(UITapGestureRecognizer *)tap
 {
     NSMutableArray *imageDataArray = [NSMutableArray array];
-    
     NSInteger startIndex = tap.view.tag - 1;
-    
-
     [self.urls enumerateObjectsUsingBlock:^(NSString *   _Nonnull urlString, NSUInteger idx, BOOL * _Nonnull stop) {
                     
         UIImageView * imageView = [self.view viewWithTag:1+idx];
@@ -74,10 +71,12 @@
         }
         
         [imageDataArray addObject:item];
-
     }];
 
+    /// 配置自定义下载
     DDPhotoSDImageDownloadEngine * downloadEngine = [DDPhotoSDImageDownloadEngine new];
+    
+    /// DDSDAnimatedImageView 配置显示图片 的 view
     
     /** 图片选择器展示*/
     DDPhotoBrowser * b = [DDPhotoBrowser photoBrowserWithPhotoItems:imageDataArray currentIndex:startIndex getImageViewClass:DDSDAnimatedImageView.class downloadEngine:downloadEngine];
@@ -90,7 +89,6 @@
     };
         
     [b showFromVC:self];
-
 }
 
 - (void)didReceiveMemoryWarning

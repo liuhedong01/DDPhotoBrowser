@@ -8,12 +8,11 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-@protocol DDGetImageViewEngine <NSObject,NSCopying>
+@protocol DDGetImageViewEngine <NSObject>
 
 - (UIImageView *)getImageViewWithFrame:(CGRect)frame;
 - (UIImageView *)getImageView;
 - (NSData *)getImageData;
 - (UIImage *)getImage;
-- (id)copyWithZone:(NSZone *)zone;
 
 @end
