@@ -1,5 +1,5 @@
 PODS:
-  - DDPhotoBrowser (2.0.1)
+  - DDPhotoBrowser (2.0.2)
   - SDWebImage (5.9.4):
     - SDWebImage/Core (= 5.9.4)
   - SDWebImage/Core (5.9.4)
@@ -17,7 +17,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  DDPhotoBrowser: 30c614341c8505c1fe57f02b3e7d4387b576d904
+  DDPhotoBrowser: 4ff162a1ad8ce32776ab248480a283bf1fb31e73
   SDWebImage: b69257f4ab14e9b6a2ef53e910fdf914d8f757c1
 
 PODFILE CHECKSUM: ba8118c1757755f898aab99a2ea72db99a34e4e6
